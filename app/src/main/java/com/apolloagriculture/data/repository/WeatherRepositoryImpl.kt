@@ -21,16 +21,14 @@ import com.apolloagriculture.network.data.api.WeatherAPI
 import com.apolloagriculture.network.network.ApolloAgricultureResult
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.emptyFlow
 
 internal class WeatherRepositoryImpl(
     private val weatherAPI: WeatherAPI,
     private val weatherDao: WeatherDao,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : WeatherRepository {
-
     override suspend fun fetchCurrentWeather(): ApolloAgricultureResult<Weather> {
-        return emptyFlow()
+        TODO("Not yet implemented")
     }
 
 }

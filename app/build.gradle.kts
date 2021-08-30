@@ -200,6 +200,9 @@ android {
         // Koin main features for Android (Scope,ViewModel)
         implementation(Libraries.koin)
 
+        // kotlinx.coroutines
+        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1")
+
         // leak canary
         debugImplementation("com.squareup.leakcanary:leakcanary-android:2.7")
 
