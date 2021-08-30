@@ -25,4 +25,8 @@ pluginManagement {
 
 include("app")
 
+include(":internal:core")
+include(":internal:data")
+include(":internal:network")
+
 rootProject.name = "ApolloAgriculture"

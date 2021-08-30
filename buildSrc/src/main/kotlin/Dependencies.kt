@@ -40,3 +40,9 @@ object Libraries {
     const val espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
     const val annotation = "androidx.annotation:annotation:${Versions.annotation}"
 }
+
+object BuildModules {
+    const val coreModule = ":internal:core"
+    const val dataModule = ":internal:data"
+    const val networkModule = ":internal:network"
+}
