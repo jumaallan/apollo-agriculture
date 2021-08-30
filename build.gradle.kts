@@ -34,13 +34,11 @@ buildscript {
     val kotlinVersion by extra("1.5.21")
     val jacocoVersion by extra("0.2")
     val junit5Version by extra("1.7.1.1")
-    val fladleVersion by extra("0.16.2")
 
     dependencies {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
         classpath("com.hiya:jacoco-android:$jacocoVersion")
         classpath("de.mannodermaus.gradle.plugins:android-junit5:$junit5Version")
-        classpath("com.osacky.flank.gradle:fladle:$fladleVersion")
     }
 }
 

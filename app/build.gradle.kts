@@ -4,7 +4,6 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint")
     id("com.hiya.jacoco-android")
     id("de.mannodermaus.android-junit5")
-    id("com.osacky.fladle")
     id("kotlin-android")
     id("kotlin-parcelize")
 }
@@ -124,13 +123,12 @@ android {
     }
 
     buildFeatures {
-//        compose = true
-        viewBinding = true
+        compose = true
     }
 
-//    composeOptions {
-//        kotlinCompilerExtensionVersion = "1.0.1"
-//    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.0.1"
+    }
 
     packagingOptions {
         resources {
@@ -165,47 +163,48 @@ android {
         }
     }
 
-    // The Fladle RoboTest task is invoked with ./gradlew runFlank
-    fladle {
-        val roboTestBuildType = "debug"
-        variant.set(roboTestBuildType)
-        // Project Id is not needed if serviceAccountCredentials are set.
-        // I didn't setup the serviceAccountCredentials, since this is an interview solution
-        projectId.set("apolloagriculture")
-        useOrchestrator.set(true)
-        environmentVariables.set(project.provider { mapOf("clearPackageData" to "true") })
-        // debugApk.set(project.provider { "$buildDir/outputs/bundle/debug/*.aab" }) // if its a bundle
-        debugApk.set(project.provider { "$buildDir/outputs/apk/debug/*.apk" })
-        roboScript.set("${project.layout.projectDirectory}/tools/ci/robotest/sanity-$roboTestBuildType.json")
-        disableSharding.set(true)
-        // This is the test timeout, there is also about 5 minutes of setup and teardown outside of this
-        // Therefore a test timeout of 60seconds will mean the runFlank task takes ~6minutes
-        testTimeout.set("60s")
-        devices.set(
-            listOf(
-                mapOf("model" to "Pixel2", "version" to "28")
-            )
-        )
+    dependencies {
+        implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+        api(project(BuildModules.coreModule))
+        api(project(BuildModules.dataModule))
+        api(project(BuildModules.networkModule))
+
+        implementation(Libraries.kotlinStdLib)
+        implementation(Libraries.coreKtx)
+
+        implementation("androidx.appcompat:appcompat:1.3.1")
+        implementation("com.google.android.material:material:1.4.0")
+
+        implementation("androidx.compose.ui:ui:1.1.0-alpha01")
+        implementation("androidx.compose.material:material:1.1.0-alpha01")
+        implementation("androidx.compose.ui:ui-tooling-preview:1.1.0-alpha01")
+        implementation("androidx.activity:activity-compose:1.3.1")
+        implementation("androidx.constraintlayout:constraintlayout-compose:1.0.0-beta02")
+
+        implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
+        implementation("androidx.compose.runtime:runtime-livedata:1.1.0-alpha01")
+        implementation("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07")
+
+        // DI - KOIN
+        // Koin main features for Android (Scope,ViewModel)
+        implementation(Libraries.koin)
+        // Koin for Jetpack Compose
+        implementation(Libraries.koinCompose)
+
+        // kotlinx.coroutines
+        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1")
+        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1")
+
+        implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
+
+        // leak canary
+        debugImplementation("com.squareup.leakcanary:leakcanary-android:2.7")
+
+        // timber
+        implementation(Libraries.timber)
+
+        testImplementation("junit:junit:4.13.2")
+        androidTestImplementation("androidx.test.ext:junit:1.1.3")
+        androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
     }
-}
-
-dependencies {
-
-    implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("com.google.android.material:material:1.4.0")
-
-//    implementation("androidx.compose.ui:ui:1.1.0")
-//    implementation("androidx.compose.material:material:1.1.0")
-//    implementation("androidx.compose.ui:ui-tooling-preview:1.1.0")
-//    implementation("androidx.activity:activity-compose:1.3.1")
-//    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.0")
-
-    implementation("androidx.core:core-ktx:1.6.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.0")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
-    implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
-
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
 }

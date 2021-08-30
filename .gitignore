@@ -16,5 +16,7 @@
 buildSrc/build/*
 buildSrc/.gradle/*
 
+internal/build
+
 
 fastlane/report.xml
