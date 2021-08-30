@@ -1,0 +1,12 @@
+configurations:
+  - name: debug
+    task_build: ktlintFormat ktlintCheck detekt spotlessApply assembleDebug
+    task_unittest: assembleDebugUnitTest
+
+  - name: release
+    version_name: 0.0.1
+    version_code: 1
+    app_identifier: com.apolloagriculture
+    app_name: ApolloAgriculture
+    task_build: ktlintFormat ktlintCheck detekt spotlessApply assembleDebug
+    task_unittest: assembleDebugUnitTest
