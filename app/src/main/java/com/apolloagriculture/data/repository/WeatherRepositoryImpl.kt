@@ -30,5 +30,4 @@ internal class WeatherRepositoryImpl(
     override suspend fun fetchCurrentWeather(): ApolloAgricultureResult<Weather> {
         TODO("Not yet implemented")
     }
-
 }
