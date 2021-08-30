@@ -124,13 +124,13 @@ android {
     }
 
     buildFeatures {
-        compose = true
+//        compose = true
         viewBinding = true
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.0.1"
-    }
+//    composeOptions {
+//        kotlinCompilerExtensionVersion = "1.0.1"
+//    }
 
     packagingOptions {
         resources {
