@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.apolloagriculture.android.takehomeassignment">
+    package="com.apolloagriculture">
 
     <application
         android:allowBackup="true"
@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Takehomeassignment">
+
         <activity
-            android:name=".MainActivity"
+            android:name="com.apolloagriculture.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Takehomeassignment.NoActionBar">
@@ -20,6 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
