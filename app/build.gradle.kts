@@ -187,12 +187,18 @@ android {
             )
         )
     }
-}
 
-dependencies {
+    dependencies {
+        implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+        api(project(BuildModules.coreModule))
+        api(project(BuildModules.dataModule))
+        api(project(BuildModules.networkModule))
 
-    implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("com.google.android.material:material:1.4.0")
+        implementation(Libraries.kotlinStdLib)
+        implementation(Libraries.coreKtx)
+
+        implementation("androidx.appcompat:appcompat:1.3.1")
+        implementation("com.google.android.material:material:1.4.0")
 
 //    implementation("androidx.compose.ui:ui:1.1.0")
 //    implementation("androidx.compose.material:material:1.1.0")
@@ -200,12 +206,22 @@ dependencies {
 //    implementation("androidx.activity:activity-compose:1.3.1")
 //    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.0")
 
-    implementation("androidx.core:core-ktx:1.6.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.0")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
-    implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
+        implementation("androidx.constraintlayout:constraintlayout:2.1.0")
+        implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
+        implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
 
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+        // DI - KOIN
+        // Koin main features for Android (Scope,ViewModel)
+        implementation(Libraries.koin)
+
+        // leak canary
+        debugImplementation("com.squareup.leakcanary:leakcanary-android:2.7")
+
+        // timber
+        implementation(Libraries.timber)
+
+        testImplementation("junit:junit:4.13.2")
+        androidTestImplementation("androidx.test.ext:junit:1.1.3")
+        androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    }
 }
