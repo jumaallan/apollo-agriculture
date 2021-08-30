@@ -17,8 +17,12 @@ package com.apolloagriculture.data.repository
 
 import com.apolloagriculture.data.model.Weather
 import com.apolloagriculture.network.network.ApolloAgricultureResult
+import kotlinx.coroutines.flow.Flow
+import com.apolloagriculture.data.database.entity.Weather as WeatherModel
 
 internal interface WeatherRepository {
 
     suspend fun fetchCurrentWeather(): ApolloAgricultureResult<Weather>
+    suspend fun fetchOfflineCurrentWeather(): Flow<List<WeatherModel>>
+    suspend fun saveCurrentWeather(weather: List<WeatherModel>)
 }

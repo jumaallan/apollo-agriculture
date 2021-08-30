@@ -15,9 +15,8 @@
  */
 package com.apolloagriculture.data.model
 
+import com.apolloagriculture.network.data.models.Day
+
 internal data class Weather(
-    val lowTemp: Double,
-    val highTemp: Double,
-    val icon: String,
-    val description: String
+    val day: HashMap<String, Day>
 )

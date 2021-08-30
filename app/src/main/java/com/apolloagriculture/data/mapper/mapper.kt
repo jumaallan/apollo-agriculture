@@ -15,12 +15,10 @@
  */
 package com.apolloagriculture.data.mapper
 
-import com.apolloagriculture.data.database.entity.Weather
+import com.apolloagriculture.data.model.Weather
+import com.apolloagriculture.network.data.models.WeatherResponse
 
-internal fun Weather.toWeatherUIModel(): com.apolloagriculture.data.model.Weather =
-    com.apolloagriculture.data.model.Weather(
-        lowTemp = this.lowTemp,
-        highTemp = this.highTemp,
-        icon = this.icon,
-        description = this.description,
+internal fun WeatherResponse.toWeatherUIModel(): Weather =
+    Weather(
+        day = this.day
     )
