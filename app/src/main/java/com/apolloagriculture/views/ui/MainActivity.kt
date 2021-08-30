@@ -16,17 +16,69 @@
 package com.apolloagriculture.views.ui
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.apolloagriculture.databinding.ActivityMainBinding
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import com.apolloagriculture.views.composables.DayAfterTomorrowCard
+import com.apolloagriculture.views.composables.TodayCard
+import com.apolloagriculture.views.composables.TomorrowCard
+import com.apolloagriculture.views.composables.TopBar
+import com.apolloagriculture.views.theme.ApolloAgricultureTheme
+import com.apolloagriculture.views.viewmodel.WeatherViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : ComponentActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private val weatherViewModel: WeatherViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
+        setContent {
+            ApolloAgricultureTheme {
+                // A surface container using the 'background' color from the theme
+                Surface(color = MaterialTheme.colors.background) {
+                    Scaffold(
+                        topBar = { TopBar() },
+                        content = { ShowWeatherScreen() }
+                    )
+                }
+            }
+        }
+
+    }
+}
+
+@Composable
+fun ShowWeatherScreen() {
+    Column(
+        modifier = Modifier.verticalScroll(rememberScrollState())
+    ) {
+        TodayCard()
+        TomorrowCard()
+        DayAfterTomorrowCard()
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ShowWeatherScreenPreview() {
+    ApolloAgricultureTheme {
+        ShowWeatherScreen()
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ShowWeatherScreenDarModePreview() {
+    ApolloAgricultureTheme(darkTheme = true) {
+        ShowWeatherScreen()
     }
 }
