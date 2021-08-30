@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.apolloagriculture">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".ApolloAgriculture"
         android:allowBackup="true"
@@ -9,13 +11,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ApolloAgriculture">
+        android:theme="@style/AppTheme">
 
         <activity
             android:name="com.apolloagriculture.views.ui.MainActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.ApolloAgriculture.NoActionBar">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
