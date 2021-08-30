@@ -52,10 +52,22 @@ dependencies {
     implementation(Libraries.kotlinStdLib)
     implementation(Libraries.coreKtx)
 
+    // DI - KOIN
+    implementation(Libraries.koin)
+
+    // Network - Retrofit, OKHTTP
+    api("com.squareup.retrofit2:retrofit:2.9.0")
+    api("com.squareup.retrofit2:converter-gson:2.9.0")
+    api("com.squareup.okhttp3:okhttp:5.0.0-alpha.2")
+    api("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2")
+
+    // Chucker
+    debugImplementation("com.github.chuckerteam.chucker:library:3.5.2")
+    releaseImplementation("com.github.chuckerteam.chucker:library-no-op:3.5.2")
+
+    // kotlinx.coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1")
+
     // timber
     implementation(Libraries.timber)
-
-    // Firebase crashlytics
-    implementation(platform(Libraries.bom))
-    implementation(Libraries.crashlytics)
 }
