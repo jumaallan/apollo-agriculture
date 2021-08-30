@@ -3,6 +3,7 @@
     package="com.apolloagriculture">
 
     <application
+        android:name=".ApolloAgriculture"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,7 +12,7 @@
         android:theme="@style/Theme.Takehomeassignment">
 
         <activity
-            android:name="com.apolloagriculture.MainActivity"
+            android:name="com.apolloagriculture.views.ui.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Takehomeassignment.NoActionBar">
