@@ -20,6 +20,6 @@ import retrofit2.http.GET
 
 interface WeatherAPI {
 
-    @GET("/android-takehomeassignment/weather.json")
+    @GET("/eng/android-takehomeassignment/weather.json")
     suspend fun fetchCurrentWeather(): WeatherResponse
 }

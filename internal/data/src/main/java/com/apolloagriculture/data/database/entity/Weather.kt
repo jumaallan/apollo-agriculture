@@ -16,12 +16,14 @@
 package com.apolloagriculture.data.database.entity
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(indices = [Index(value = ["day"], unique = true)])
 data class Weather(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
+    val day: String,
     val lowTemp: Double,
     val highTemp: Double,
     val icon: String,

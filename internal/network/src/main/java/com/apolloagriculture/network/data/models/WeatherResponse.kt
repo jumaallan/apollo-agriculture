@@ -15,11 +15,13 @@
  */
 package com.apolloagriculture.network.data.models
 
-import com.google.gson.annotations.SerializedName
-
 data class WeatherResponse(
-    @SerializedName("description") val description: String,
-    @SerializedName("highTemp") val highTemp: Double,
-    @SerializedName("icon") val icon: String,
-    @SerializedName("lowTemp") val lowTemp: Double
+    val day: HashMap<String, Day>,
+)
+
+data class Day(
+    val lowTemp: Double,
+    val highTemp: Double,
+    val icon: String,
+    val description: String
 )
