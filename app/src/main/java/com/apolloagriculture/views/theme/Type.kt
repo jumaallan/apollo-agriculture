@@ -30,16 +30,32 @@ val Chirp = FontFamily(
 
 // Set of Material typography styles to start with
 val Typography = Typography(
-    body1 = TextStyle(
-        fontFamily = Chirp,
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp
-    ),
-
-    button = TextStyle(
+    h1 = TextStyle(
         fontFamily = Chirp,
         fontWeight = FontWeight.Bold,
-        fontSize = 16.sp
+        fontSize = 25.sp,
+        letterSpacing = 0.5.sp
+    ),
+    subtitle1 = TextStyle(
+        fontFamily = Chirp,
+        fontWeight = FontWeight.Bold,
+        fontSize = 23.sp,
+        letterSpacing = 0.sp
+    ),
+    body1 = TextStyle(
+        fontFamily = Chirp,
+        fontSize = 16.sp,
+        letterSpacing = 0.sp
+    ),
+    body2 = TextStyle(
+        fontFamily = Chirp,
+        fontWeight = FontWeight.Bold,
+        fontSize = 14.sp,
+        letterSpacing = 0.sp
+    ),
+    caption = TextStyle(
+        fontFamily = Chirp,
+        fontSize = 14.sp,
+        letterSpacing = 0.sp
     )
-
 )
