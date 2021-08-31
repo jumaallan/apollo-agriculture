@@ -30,7 +30,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.apolloagriculture.views.composables.DayAfterTomorrowCard
 import com.apolloagriculture.views.composables.TodayCard
 import com.apolloagriculture.views.composables.TomorrowCard
-import com.apolloagriculture.views.composables.TopBar
 import com.apolloagriculture.views.theme.ApolloAgricultureTheme
 import com.apolloagriculture.views.viewmodel.WeatherViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
