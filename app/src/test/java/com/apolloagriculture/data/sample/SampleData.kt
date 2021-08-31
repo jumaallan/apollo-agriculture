@@ -17,7 +17,7 @@ package com.apolloagriculture.data.sample
 
 import com.apolloagriculture.data.database.entity.Weather
 import com.apolloagriculture.data.model.ApolloAgricultureState
-import com.apolloagriculture.network.data.models.Day
+import com.apolloagriculture.network.data.models.WeatherResponse
 
 internal val testWeatherData = listOf(
     Weather(
@@ -46,17 +46,15 @@ internal val testWeatherData = listOf(
     )
 )
 
-internal val day = Day(
+internal val day = WeatherResponse(
     lowTemp = 22.73,
     highTemp = 25.14,
     icon = "BROKEN_OVERCAST_CLOUDS_DAY",
     description = "broken clouds"
 )
 
-internal val testWeatherResponse = com.apolloagriculture.data.model.Weather(
-    day = hashMapOf(
-        "today" to day
-    )
+internal val testWeatherResponse = hashMapOf(
+    "today" to day
 )
 
 internal val testWeatherResponseResult = ApolloAgricultureState.Result(testWeatherResponse)

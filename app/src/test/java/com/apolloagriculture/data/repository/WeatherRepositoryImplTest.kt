@@ -19,9 +19,10 @@ import androidx.room.Room
 import androidx.test.platform.app.InstrumentationRegistry
 import com.apolloagriculture.data.database.Database
 import com.apolloagriculture.data.database.dao.WeatherDao
-import com.apolloagriculture.data.model.Weather
+import com.apolloagriculture.data.sample.testWeatherData
 import com.apolloagriculture.dispatcher.MockRequestDispatcher
 import com.apolloagriculture.network.data.api.WeatherAPI
+import com.apolloagriculture.network.data.models.WeatherResponse
 import com.apolloagriculture.network.network.ApolloAgricultureResult
 import com.google.common.truth.Truth
 import com.google.gson.GsonBuilder
@@ -36,7 +37,6 @@ import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.gherkin.Feature
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import com.apolloagriculture.data.sample.testWeatherData
 import java.util.concurrent.TimeUnit
 
 /**
@@ -58,7 +58,7 @@ internal class WeatherRepositoryImplTest : Spek({
 
     lateinit var weatherRepository: WeatherRepository
 
-    lateinit var result: ApolloAgricultureResult<Weather>
+    lateinit var result: ApolloAgricultureResult<HashMap<String, WeatherResponse>>
     lateinit var weather: com.apolloagriculture.data.database.entity.Weather
 
     fun buildOkhttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
@@ -120,9 +120,19 @@ internal class WeatherRepositoryImplTest : Spek({
                 Truth.assertThat(result).isInstanceOf(ApolloAgricultureResult.Success::class.java)
             }
 
-            Then("We check the value of today's weather to check if we get the correct value") {
-                Truth.assertThat((result as ApolloAgricultureResult.Success).data.day["Today"]!!.lowTemp)
+            Then("We check the value of today's weather to check if we get the correct lowTemp value") {
+                Truth.assertThat((result as ApolloAgricultureResult.Success).data["today"]?.lowTemp)
                     .isEqualTo(23.36)
+            }
+
+            Then("We check the value of tomorrow's weather to check if we get the correct highTemp value") {
+                Truth.assertThat((result as ApolloAgricultureResult.Success).data["tomorrow"]?.highTemp)
+                    .isEqualTo(24.9)
+            }
+
+            Then("We check the value of day after tomorrow weather to check if we get the correct description value") {
+                Truth.assertThat((result as ApolloAgricultureResult.Success).data["dayAfterTomorrow"]?.description)
+                    .isEqualTo("broken clouds")
             }
         }
 
