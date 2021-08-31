@@ -74,9 +74,9 @@ fun DayAfterTomorrow() {
                 WeatherIconImage(
                     image =
                     if (isLightTheme) {
-                        R.drawable.ic_weather_rain
+                        R.drawable.ic_weather_one_cloud
                     } else {
-                        R.drawable.ic_weather_thunder
+                        R.drawable.ic_weather_one_cloud
                     },
                     contentScale = ContentScale.Fit,
                     contentDesc = "Weather Icon",
@@ -96,7 +96,7 @@ fun DayAfterTomorrow() {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        text = "32.3",
+                        text = "22.73",
                         style = MaterialTheme.typography.subtitle1,
                         modifier = Modifier.padding(top = 10.dp)
                     )
@@ -113,7 +113,7 @@ fun DayAfterTomorrow() {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        text = "52.3",
+                        text = "25.14",
                         style = MaterialTheme.typography.subtitle1,
                         modifier = Modifier.padding(top = 10.dp)
                     )

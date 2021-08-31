@@ -74,9 +74,9 @@ fun Tomorrow() {
                 WeatherIconImage(
                     image =
                     if (isLightTheme) {
-                        R.drawable.ic_weather_rain
+                        R.drawable.ic_weather_some_clouds
                     } else {
-                        R.drawable.ic_weather_thunder
+                        R.drawable.ic_weather_some_clouds
                     },
                     contentScale = ContentScale.Fit,
                     contentDesc = "Weather Icon",
@@ -96,7 +96,7 @@ fun Tomorrow() {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        text = "32.3",
+                        text = "23.63",
                         style = MaterialTheme.typography.subtitle1,
                         modifier = Modifier.padding(top = 10.dp)
                     )
@@ -113,7 +113,7 @@ fun Tomorrow() {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        text = "52.3",
+                        text = "24.9",
                         style = MaterialTheme.typography.subtitle1,
                         modifier = Modifier.padding(top = 10.dp)
                     )
@@ -134,7 +134,7 @@ fun Tomorrow() {
         ) {
             Spacer(modifier = Modifier.size(8.dp))
             Text(
-                text = "broken clouds",
+                text = "scattered clouds",
                 style = MaterialTheme.typography.caption,
                 textAlign = TextAlign.Center
             )
