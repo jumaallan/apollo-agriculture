@@ -32,11 +32,6 @@ internal class WeatherViewModel(
         MutableStateFlow(ApolloAgricultureState.Loading)
     val weatherState = mutableApolloAgricultureState.asStateFlow()
 
-    init {
-//        fetchCurrentWeather()
-//        fetchOfflineCurrentWeather()
-    }
-
     fun fetchCurrentWeather() = viewModelScope.launch {
         when (
             val result =
