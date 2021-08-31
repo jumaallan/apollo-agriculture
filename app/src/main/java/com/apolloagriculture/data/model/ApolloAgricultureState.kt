@@ -15,6 +15,8 @@
  */
 package com.apolloagriculture.data.model
 
+import com.apolloagriculture.network.data.models.WeatherResponse
+
 internal sealed class ApolloAgricultureState {
     /**
      * Used to represent Loading status of an IO operation
@@ -25,7 +27,7 @@ internal sealed class ApolloAgricultureState {
      * This is used to represent successful results
      * In this case, the Result has the ExchangeRate data class
      */
-    data class Result(val weather: Weather) : ApolloAgricultureState()
+    data class Result(val weather: HashMap<String, WeatherResponse>) : ApolloAgricultureState()
 
     /**
      * Used to represent errors that resulted from an IO operation

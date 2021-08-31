@@ -15,8 +15,8 @@
  */
 package com.apolloagriculture.data.model
 
-import com.apolloagriculture.network.data.models.Day
+import com.apolloagriculture.network.data.models.WeatherResponse
 
 internal data class Weather(
-    val day: HashMap<String, Day>
+    val weatherResponse: HashMap<String, WeatherResponse>
 )
