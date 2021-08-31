@@ -16,10 +16,6 @@
 package com.apolloagriculture.network.data.models
 
 data class WeatherResponse(
-    val day: HashMap<String, Day>,
-)
-
-data class Day(
     val lowTemp: Double,
     val highTemp: Double,
     val icon: String,
