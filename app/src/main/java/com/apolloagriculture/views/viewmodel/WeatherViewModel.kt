@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.apolloagriculture.data.model.ApolloAgricultureState
 import com.apolloagriculture.data.repository.WeatherRepository
+import com.apolloagriculture.network.data.models.WeatherResponse
 import com.apolloagriculture.network.network.ApolloAgricultureResult
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -32,9 +33,13 @@ internal class WeatherViewModel(
         MutableStateFlow(ApolloAgricultureState.Loading)
     val weatherState = mutableApolloAgricultureState.asStateFlow()
 
-    init {
-//        fetchCurrentWeather()
-//        fetchOfflineCurrentWeather()
+    private val _weather: MutableStateFlow<HashMap<String, WeatherResponse>> = MutableStateFlow(
+        hashMapOf()
+    )
+    val weather = _weather.asStateFlow()
+
+    fun setWeather(weather: HashMap<String, WeatherResponse>) {
+        _weather.value = weather
     }
 
     fun fetchCurrentWeather() = viewModelScope.launch {

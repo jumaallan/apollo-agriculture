@@ -1,0 +1,20 @@
+{
+  "today": {
+    "lowTemp": 23.36,
+    "highTemp": 24.66,
+    "icon": "CLEAR_DAY",
+    "description": "clear sky"
+  },
+  "tomorrow": {
+    "lowTemp": 23.63,
+    "highTemp": 24.9,
+    "icon": "SCATTERED_CLOUDS_DAY",
+    "description": "scattered clouds"
+  },
+  "dayAfterTomorrow": {
+    "lowTemp": 22.73,
+    "highTemp": 25.14,
+    "icon": "BROKEN_OVERCAST_CLOUDS_DAY",
+    "description": "broken clouds"
+  }
+}

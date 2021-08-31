@@ -16,9 +16,8 @@
 package com.apolloagriculture.data.repository
 
 import com.apolloagriculture.data.database.dao.WeatherDao
-import com.apolloagriculture.data.mapper.toWeatherUIModel
-import com.apolloagriculture.data.model.Weather
 import com.apolloagriculture.network.data.api.WeatherAPI
+import com.apolloagriculture.network.data.models.WeatherResponse
 import com.apolloagriculture.network.network.ApolloAgricultureResult
 import com.apolloagriculture.network.network.safeApiCall
 import kotlinx.coroutines.CoroutineDispatcher
@@ -32,10 +31,9 @@ internal class WeatherRepositoryImpl(
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : WeatherRepository {
 
-    override suspend fun fetchCurrentWeather(): ApolloAgricultureResult<Weather> =
+    override suspend fun fetchCurrentWeather(): ApolloAgricultureResult<HashMap<String, WeatherResponse>> =
         safeApiCall(ioDispatcher) {
-            val weatherResponse = weatherAPI.fetchCurrentWeather()
-            return@safeApiCall weatherResponse.toWeatherUIModel()
+            return@safeApiCall weatherAPI.fetchCurrentWeather()
         }
 
     override suspend fun fetchOfflineCurrentWeather(): Flow<List<WeatherModel>> =
