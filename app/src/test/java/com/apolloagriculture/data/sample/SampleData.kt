@@ -17,39 +17,13 @@ package com.apolloagriculture.data.sample
 
 import com.apolloagriculture.data.database.entity.Weather
 import com.apolloagriculture.data.model.ApolloAgricultureState
+import com.apolloagriculture.network.data.models.IconType
 import com.apolloagriculture.network.data.models.WeatherResponse
-
-internal val testWeatherData = listOf(
-    Weather(
-        id = 0,
-        day = "today",
-        lowTemp = 23.36,
-        highTemp = 24.66,
-        icon = "CLEAR_DAY",
-        description = "clear sky"
-    ),
-    Weather(
-        id = 0,
-        day = "tomorrow",
-        lowTemp = 23.63,
-        highTemp = 24.9,
-        icon = "SCATTERED_CLOUDS_DAY",
-        description = "scattered clouds"
-    ),
-    Weather(
-        id = 0,
-        day = "dayAfterTomorrow",
-        lowTemp = 22.73,
-        highTemp = 25.14,
-        icon = "BROKEN_OVERCAST_CLOUDS_DAY",
-        description = "broken clouds"
-    )
-)
 
 internal val day = WeatherResponse(
     lowTemp = 22.73,
     highTemp = 25.14,
-    icon = "BROKEN_OVERCAST_CLOUDS_DAY",
+    icon = IconType.BROKEN_OVERCAST_CLOUDS_DAY,
     description = "broken clouds"
 )
 
