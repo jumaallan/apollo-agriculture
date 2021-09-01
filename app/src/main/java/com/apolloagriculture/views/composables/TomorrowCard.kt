@@ -31,6 +31,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.apolloagriculture.R
 import com.apolloagriculture.data.model.ApolloAgricultureState
+import com.apolloagriculture.network.data.models.IconType
 import com.apolloagriculture.views.theme.ApolloAgricultureTheme
 import com.apolloagriculture.views.viewmodel.WeatherViewModel
 import org.koin.androidx.compose.getViewModel
@@ -109,9 +110,35 @@ fun Tomorrow() {
                     WeatherIconImage(
                         image =
                         if (isLightTheme) {
-                            R.drawable.ic_weather_some_clouds
+                            when (weatherViewModel.weather.value["tomorrow"]?.icon) {
+                                IconType.CLEAR_DAY -> {
+                                    R.drawable.ic_weather_clear_day
+                                }
+                                IconType.BROKEN_OVERCAST_CLOUDS_DAY -> {
+                                    R.drawable.ic_weather_one_cloud
+                                }
+                                IconType.SCATTERED_CLOUDS_DAY -> {
+                                    R.drawable.ic_weather_some_clouds
+                                }
+                                else -> {
+                                    R.drawable.ic_weather_clear_day
+                                }
+                            }
                         } else {
-                            R.drawable.ic_weather_some_clouds
+                            when (weatherViewModel.weather.value["tomorrow"]?.icon) {
+                                IconType.CLEAR_DAY -> {
+                                    R.drawable.ic_weather_clear_day
+                                }
+                                IconType.BROKEN_OVERCAST_CLOUDS_DAY -> {
+                                    R.drawable.ic_weather_one_cloud
+                                }
+                                IconType.SCATTERED_CLOUDS_DAY -> {
+                                    R.drawable.ic_weather_some_clouds
+                                }
+                                else -> {
+                                    R.drawable.ic_weather_clear_day
+                                }
+                            }
                         },
                         contentScale = ContentScale.Fit,
                         contentDesc = "Weather Icon",

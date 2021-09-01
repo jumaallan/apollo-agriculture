@@ -23,6 +23,15 @@ import com.apolloagriculture.views.theme.ApolloAgricultureTheme
 import org.junit.Rule
 import org.junit.Test
 
+/**
+ * Did some hacks here, not proud of the setup here
+ *      So since we are injecting the viewmodel into the composable, I haven't found a better way to
+ *      mock the viewmodel when doing the UI tests using compose. So I put "Thread.sleep(10000)" to
+ *      pause the tests and give some time for the network call to execute. The test would fail if
+ *      the emulator/phone is not connected to the network.
+ *
+ *      Without compose, we'd ideally provide a mock viewmodel, and then use that to run UI tests normally.
+ */
 class MainActivityTest {
 
     @get:Rule
@@ -43,6 +52,8 @@ class MainActivityTest {
                 }
             }
         }
+
+        Thread.sleep(10000)
 
         composeTestRule.onNodeWithText("Today").assertIsDisplayed()
         composeTestRule.onAllNodes(hasText("Low Temperature")).assertAny(isEnabled())
@@ -65,6 +76,8 @@ class MainActivityTest {
             }
         }
 
+        Thread.sleep(10000)
+
         composeTestRule.onNodeWithText("Tomorrow").assertIsDisplayed()
         composeTestRule.onAllNodes(hasText("Low Temperature")).assertAny(isEnabled())
         composeTestRule.onAllNodes(hasText("High Temperature")).assertAny(isEnabled())
@@ -85,6 +98,8 @@ class MainActivityTest {
                 }
             }
         }
+
+        Thread.sleep(10000)
 
         composeTestRule.onNodeWithText("Day After Tomorrow").assertIsDisplayed()
         composeTestRule.onAllNodes(hasText("Low Temperature")).assertAny(isEnabled())

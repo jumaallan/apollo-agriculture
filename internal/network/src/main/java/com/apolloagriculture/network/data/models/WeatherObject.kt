@@ -15,13 +15,7 @@
  */
 package com.apolloagriculture.network.data.models
 
-data class WeatherResponse(
-    val lowTemp: Double,
-    val highTemp: Double,
-    val icon: IconType,
-    val description: String
-)
+interface WeatherObject<out WeatherObject : Any?> {
 
-enum class IconType {
-    CLEAR_DAY, SCATTERED_CLOUDS_DAY, BROKEN_OVERCAST_CLOUDS_DAY
+    fun toWeatherModel(): WeatherObject
 }

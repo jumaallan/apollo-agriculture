@@ -259,5 +259,8 @@ android {
 
         // test kotlinx.coroutines Flow
         testImplementation("app.cash.turbine:turbine:0.6.0")
+
+        // Roboelectric - Testing Room
+        testImplementation("org.robolectric:robolectric:4.6.1")
     }
 }

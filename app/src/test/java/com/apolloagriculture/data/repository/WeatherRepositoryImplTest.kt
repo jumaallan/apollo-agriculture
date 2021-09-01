@@ -15,24 +15,17 @@
  */
 package com.apolloagriculture.data.repository
 
-import androidx.room.Room
-import androidx.test.platform.app.InstrumentationRegistry
-import com.apolloagriculture.data.database.Database
-import com.apolloagriculture.data.database.dao.WeatherDao
-import com.apolloagriculture.data.sample.testWeatherData
 import com.apolloagriculture.dispatcher.MockRequestDispatcher
 import com.apolloagriculture.network.data.api.WeatherAPI
 import com.apolloagriculture.network.data.models.WeatherResponse
 import com.apolloagriculture.network.network.ApolloAgricultureResult
 import com.google.common.truth.Truth
 import com.google.gson.GsonBuilder
-import kotlinx.coroutines.flow.first
+import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.mockwebserver.MockWebServer
-import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.MatcherAssert.assertThat
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.gherkin.Feature
 import retrofit2.Retrofit
@@ -52,14 +45,9 @@ internal class WeatherRepositoryImplTest : Spek({
     lateinit var loggingInterceptor: HttpLoggingInterceptor
     var weatherAPI: WeatherAPI
 
-    // database and dao
-    lateinit var database: Database
-    lateinit var weatherDao: WeatherDao
-
     lateinit var weatherRepository: WeatherRepository
 
     lateinit var result: ApolloAgricultureResult<HashMap<String, WeatherResponse>>
-    lateinit var weather: com.apolloagriculture.data.database.entity.Weather
 
     fun buildOkhttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
@@ -92,16 +80,8 @@ internal class WeatherRepositoryImplTest : Spek({
                 .build()
                 .create(WeatherAPI::class.java)
 
-            database =
-                Room.inMemoryDatabaseBuilder(
-                    InstrumentationRegistry.getInstrumentation().targetContext,
-                    Database::class.java
-                ).allowMainThreadQueries()
-                    .build()
-            weatherDao = database.weatherDao()
-
             weatherRepository =
-                WeatherRepositoryImpl(weatherAPI = weatherAPI, weatherDao = weatherDao)
+                WeatherRepositoryImpl(weatherAPI = weatherAPI, weatherDao = mockk())
         }
 
         afterEachScenario {
@@ -133,28 +113,6 @@ internal class WeatherRepositoryImplTest : Spek({
             Then("We check the value of day after tomorrow weather to check if we get the correct description value") {
                 Truth.assertThat((result as ApolloAgricultureResult.Success).data["dayAfterTomorrow"]?.description)
                     .isEqualTo("broken clouds")
-            }
-        }
-
-        Scenario("Fetching records from the app offline database") {
-            Given("Insert fake data to the in-memory database") {
-                runBlocking {
-                    weatherDao.insert(testWeatherData)
-                }
-            }
-
-            When("We fetch the weather items from db, then save the first weather item") {
-                runBlocking {
-                    weather = weatherDao.fetchCurrentWeather().first().toList()[0]
-                }
-            }
-
-            Then("We assert that the value of high temperature is the same as the one we inserted") {
-                assertThat(weather.highTemp, `is`(testWeatherData[0].highTemp))
-            }
-
-            Then("We assert that the value of low temperature is the same as the one we inserted") {
-                assertThat(weather.lowTemp, `is`(testWeatherData[0].lowTemp))
             }
         }
     }

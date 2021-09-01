@@ -13,10 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.apolloagriculture.data.model
+package com.apolloagriculture.core.extensions
 
-import com.apolloagriculture.network.data.models.WeatherResponse
+import java.util.*
 
-internal data class Weather(
-    val weatherResponse: HashMap<String, WeatherResponse>
-)
+inline fun <reified T : Enum<T>> String.toEnumWithDefaultValue(defaultValue: T): T = try {
+    enumValueOf(this.uppercase(Locale.getDefault()))
+} catch (e: Exception) {
+    defaultValue
+}
