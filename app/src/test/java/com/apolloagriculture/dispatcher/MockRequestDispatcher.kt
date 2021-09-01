@@ -26,7 +26,7 @@ open class MockRequestDispatcher : Dispatcher() {
 
     override fun dispatch(request: RecordedRequest): MockResponse {
         return when (request.path) {
-            "/weather.json" -> {
+            "/eng/android-takehomeassignment/weather.json" -> {
                 MockResponse()
                     .setResponseCode(HttpURLConnection.HTTP_OK)
                     .setBody(getJson("weather/weather.json"))
