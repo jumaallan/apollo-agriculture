@@ -39,6 +39,8 @@ Feel free to use however you think best in the app, it's also available at `http
 
 I noticed the previews are not rendering since I am injecting the viewmodel in the composables. I need to research and find a way to fix the previews
 
+I am not able to test the Room setup too, so I will ignore the implementation on the app. The reason is, I am using JUnit5 and Roboelectric doesn't support it.
+
 ### Prerequisites - Unit Tests
 
 #### Spek
