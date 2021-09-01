@@ -15,7 +15,7 @@
  */
 package com.apolloagriculture.network.data.models
 
-interface ResponseObject<out DomainObject : Any?> {
+interface WeatherObject<out WeatherObject : Any?> {
 
-    fun toWeatherModel(): DomainObject
+    fun toWeatherModel(): WeatherObject
 }
