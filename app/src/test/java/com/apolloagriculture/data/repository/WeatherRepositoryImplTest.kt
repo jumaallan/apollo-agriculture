@@ -48,7 +48,6 @@ internal class WeatherRepositoryImplTest : Spek({
     lateinit var weatherRepository: WeatherRepository
 
     lateinit var result: ApolloAgricultureResult<HashMap<String, WeatherResponse>>
-    lateinit var weather: com.apolloagriculture.data.database.entity.Weather
 
     fun buildOkhttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
