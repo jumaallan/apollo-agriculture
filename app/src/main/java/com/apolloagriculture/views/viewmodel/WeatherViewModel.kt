@@ -57,14 +57,7 @@ internal class WeatherViewModel(
             }
             is ApolloAgricultureResult.Success -> {
                 mutableApolloAgricultureState.value = ApolloAgricultureState.Result(result.data)
-//                weatherRepository.saveCurrentWeather(result.data)
             }
         }
     }
-
-//    fun fetchOfflineCurrentWeather() = viewModelScope.launch {
-//        val result = weatherRepository.fetchOfflineCurrentWeather()
-//        mutableApolloAgricultureState.value =
-//            ApolloAgricultureState.Result(result.first())
-//    }
 }
